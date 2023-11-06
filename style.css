@@ -3,3 +3,47 @@
     padding: 0;
     margin: 0;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 100vh;
+}
+header, footer {
+    text-align: center;
+    padding: 0.2em;
+    background-color: blue;
+}
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator-container {
+    flex: 0 1 400px;
+    background-color: aqua;
+    padding: .4rem;
+}
+
+#display {
+    min-height: 2em;
+    background-color: wheat;
+    margin-bottom: .4rem;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.keyboard-row {
+    display: flex;
+    font-size: 2rem;
+    gap: 3px;
+}
+.keyboard-row > button {
+    flex: 1 0 0;
+    padding: .2em;
+}
