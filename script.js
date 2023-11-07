@@ -64,7 +64,26 @@ function insertOperator(newOperator) {
 }
 
 function evaluate(operand1, operand2, operator) {
-
+    if (operand2 === null) {
+        result = operand1;
+        updateDisplay();
+        return;
+    }
+    switch (operator) {
+        case '+' :
+            result = +operand1 + +operand2;
+            break;
+        case '-' :
+            result = +operand1 - +operand2;
+            break;
+        case '*' :
+            result = +operand1 * +operand2;
+            break;
+        case '/' :
+            result = +operand1 / +operand2;
+            break;
+    }
+    updateDisplay();
 }
 
 function addDot() {
