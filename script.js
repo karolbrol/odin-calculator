@@ -130,7 +130,21 @@ function divide(a, b) {
 }
 
 function addDot() {
-    // TODO
+    switch (true) {
+        case (operand1 === null) :
+            operand1 = '0.';
+            break;
+        case (operator === null && !operand1.includes('.')) :
+            operand1 += '.';
+            break;
+        case (operator !== null && operand2 === null) :
+            operand2 = '0.';
+            break;
+        case (!operand2.includes('.')) :
+            operand2 += '.';
+    }
+    updateDisplay();
+    return;
 }
 
 function updateDisplay() {
