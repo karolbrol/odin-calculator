@@ -38,7 +38,7 @@ function handleClick(button) {
             insertOperator(button);
             break;
         case (button === '='):
-            evaluate(operand1, operand2, operator);
+            operate(operand1, operand2, operator);
             break;
         case (button === '.'):
             addDot();
@@ -78,7 +78,7 @@ function insertOperator(newOperator) {
     updateDisplay();
 }
 
-function evaluate(operand1, operand2, operator) {
+function operate(operand1, operand2, operator) {
     if (operand2 === null) {
         result = operand1;
         updateDisplay();
@@ -86,19 +86,31 @@ function evaluate(operand1, operand2, operator) {
     }
     switch (operator) {
         case '+' :
-            result = +operand1 + +operand2;
+            result = add(operand1, operand2);
             break;
         case '-' :
-            result = +operand1 - +operand2;
+            result = subtract(operand1, operand2);
             break;
         case '*' :
-            result = +operand1 * +operand2;
+            result = multiply(operand1, operand2);
             break;
         case '/' :
-            result = +operand1 / +operand2;
+            result = divide(operand1, operand2);
             break;
     }
     updateDisplay();
+}
+function add(a, b) {
+    return +a + +b;
+}
+function subtract(a, b) {
+    return +a - +b;
+}
+function multiply(a, b) {
+    return +a * +b;
+}
+function divide(a, b) {
+    return +a / +b;
 }
 
 function addDot() {
