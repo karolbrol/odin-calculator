@@ -100,10 +100,10 @@ function operate(operand1, operand2, operator) {
             break;
     }
     //round floating points
-    const MAX_DECIMAL_PLACES = 4
+    const MAX_DECIMAL_PLACES = 6;
     if (!Number.isInteger(result)) {
         result = Math.round(result * 10**MAX_DECIMAL_PLACES)/10**MAX_DECIMAL_PLACES;
-    }
+    };
     updateDisplay();
 }
 function add(a, b) {

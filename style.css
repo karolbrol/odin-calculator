@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 body {
     display: flex;
@@ -9,11 +10,13 @@ body {
     justify-content: space-between;
     align-items: stretch;
     min-height: 100vh;
+    background-color: black;
 }
 header, footer {
     text-align: center;
-    padding: 0.2em;
-    background-color: blue;
+    padding: 0.4em;
+    color: rgb(205, 214, 221);
+    background-color: rgb(43, 42, 42);
 }
 main {
     display: flex;
@@ -21,29 +24,61 @@ main {
 }
 
 .calculator-container {
-    flex: 0 1 400px;
-    background-color: aqua;
+    flex: 0 1 300px;
+    background-color: rgb(80, 88, 88);
     padding: .4rem;
+    margin: 1rem;
+    border-radius: .4rem;
 }
 
 #display {
+    font-size: 2rem;
     min-height: 2em;
     background-color: wheat;
     margin-bottom: .4rem;
+    padding: 0.3em .6em;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    background-color: rgb(22, 179, 22);
+    background-image:
+        linear-gradient(45deg, rgba(0, 0, 0, .3) 0%, transparent 20%),
+        linear-gradient(135deg, rgba(0, 0, 0, .3) 0%, transparent 20%),
+        linear-gradient(225deg, rgba(0, 0, 0, .3) 0%, transparent 20%),
+        linear-gradient(315deg, rgba(0, 0, 0, .3) 0%, transparent 20%),
+        linear-gradient(0deg, rgba(0, 0, 0, .3) 0%, transparent .5em),
+        linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, transparent .5em),
+        linear-gradient(180deg, rgba(0, 0, 0, .3) 0%, transparent .5em),
+        linear-gradient(270deg, rgba(0, 0, 0, .3) 0%, transparent .5em);
+}
+
+.error {
+    background-color: red;  
 }
 
 #keyboard {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: .3rem;
 }
 
 .keyboard-row {
     display: flex;
     font-size: 2rem;
-    gap: 3px;
+    gap: .3rem;
 }
 .keyboard-row > button {
     flex: 1 0 0;
     padding: .2em;
+    font-size: 1.6rem;
+    color: rgb(100, 95, 86);
+    background-color: rgb(41, 40, 40);
+    border: none;
+    border-radius: .1em;
+}
+
+.keyboard-row > button:active {
+    color: yellow;
+    text-shadow: 0 0 0.8em yellow;
+    background-color: rgb(26, 25, 25);
 }
