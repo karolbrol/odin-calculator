@@ -108,7 +108,7 @@ function operate(operand1, operand2, operator) {
 
     
     if (!isError && !Number.isInteger(result)) {
-        roundDecimals(result, 6); //Round floats to 6 places after dot
+        result = roundDecimals(result, 6); //Round floats to 6 places after dot
     };
     updateDisplay();
 }
