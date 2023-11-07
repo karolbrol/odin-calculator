@@ -80,10 +80,11 @@ function insertOperator(newOperator) {
 
 function operate(operand1, operand2, operator) {
     if (operand2 === null) {
-        result = operand1;
+        result = +operand1;
         updateDisplay();
         return;
     }
+    [operand1, operand2] = [+operand1, +operand2];
     switch (operator) {
         case '+' :
             result = add(operand1, operand2);
@@ -98,19 +99,24 @@ function operate(operand1, operand2, operator) {
             result = divide(operand1, operand2);
             break;
     }
+    //round floating points
+    const MAX_DECIMAL_PLACES = 4
+    if (!Number.isInteger(result)) {
+        result = Math.round(result * 10**MAX_DECIMAL_PLACES)/10**MAX_DECIMAL_PLACES;
+    }
     updateDisplay();
 }
 function add(a, b) {
-    return +a + +b;
+    return a + b;
 }
 function subtract(a, b) {
-    return +a - +b;
+    return a - b;
 }
 function multiply(a, b) {
-    return +a * +b;
+    return a * b;
 }
 function divide(a, b) {
-    return +a / +b;
+    return a / b;
 }
 
 function addDot() {
