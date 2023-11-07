@@ -3,6 +3,7 @@ let operand1 = null;
 let operand2 = null;
 let operator = null;
 let result = null;
+let isError = false;
 
 const display = document.querySelector('#display');
 
@@ -27,6 +28,10 @@ window.addEventListener('keypress', event => {
 })
 
 function handleClick(button) {
+    if (isError) {
+        clearCalculator();  //if was error
+    }
+
     switch (true) {
         case (button === 'AC'):
             clearCalculator();
@@ -49,6 +54,7 @@ function handleClick(button) {
 
 function clearCalculator() {
     [operand1, operand2, operator, result] = [null, null, null, null];
+    resetError();
     updateDisplay();
 }
 
@@ -99,10 +105,10 @@ function operate(operand1, operand2, operator) {
             result = divide(operand1, operand2);
             break;
     }
-    //round floating points
-    const MAX_DECIMAL_PLACES = 6;
-    if (!Number.isInteger(result)) {
-        result = Math.round(result * 10**MAX_DECIMAL_PLACES)/10**MAX_DECIMAL_PLACES;
+
+    
+    if (!isError && !Number.isInteger(result)) {
+        roundDecimals(result, 6); //Round floats to 6 places after dot
     };
     updateDisplay();
 }
@@ -116,11 +122,15 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
+    if (b === 0) {
+        setError()
+        return "ERROR"
+    }
     return a / b;
 }
 
 function addDot() {
-
+    // TODO
 }
 
 function updateDisplay() {
@@ -134,3 +144,20 @@ function updateDisplay() {
             ((operand2 !== null) ? operand2 : '');
     }
 }
+
+function setError() {
+    if (!display.classList.contains('error')){
+        display.classList.add('error');
+    }
+    isError = true;
+}
+function resetError() {
+    if (display.classList.contains('error')){
+        display.classList.remove('error');
+    }
+    isError = false;
+}
+
+function roundDecimals(number, places) {
+    return Math.round(number * 10**places)/10**places;
+};
