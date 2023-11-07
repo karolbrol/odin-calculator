@@ -6,12 +6,27 @@ let result = null;
 
 const display = document.querySelector('#display');
 
+// Mouse click
 const keyboard = document.querySelector('#keyboard');
 keyboard.addEventListener('click', event => {
-    if (event.target.value === '') return;
     const button = event.target.value;
-    console.log(button);
+    if (button === '') return;
+    handleClick (button);
+});
 
+// Keyboard click
+window.addEventListener('keypress', event => {
+    let button = event.key;
+    //check if valid key
+    if (button === 'Enter') button ='=';
+    const isDigit = Number.isInteger(+button);
+    const isOtherValid = ['+','-', '*', '/', '=', 'AC', '.'].includes(button)
+    if (isDigit || isOtherValid) {
+        handleClick(button);
+    };
+})
+
+function handleClick(button) {
     switch (true) {
         case (button === 'AC'):
             clearCalculator();
@@ -30,7 +45,7 @@ keyboard.addEventListener('click', event => {
             break;
         
     }
-});
+}
 
 function clearCalculator() {
     [operand1, operand2, operator, result] = [null, null, null, null];
