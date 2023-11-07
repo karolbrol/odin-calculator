@@ -1,7 +1,8 @@
 
-let operand1;
-let operand2;
-let operator;
+let operand1 = null;
+let operand2 = null;
+let operator = null;
+let result = null;
 
 const display = document.querySelector('#display');
 
@@ -32,21 +33,52 @@ keyboard.addEventListener('click', event => {
 });
 
 function clearCalculator() {
-
+    [operand1, operand2, operator, result] = [null, null, null, null];
+    updateDisplay();
 }
 
 function insertDigit(digit) {
-
+    if (result !== null) {
+        clearCalculator();  //if inserted after evaluated
+    }
+    if (operator === null){
+        
+        operand1 = (operand1 === null) ? digit : operand1+digit;
+    }
+    else {
+        operand2 = (operand2 === null) ? digit : operand2+digit;
+    }
+    updateDisplay();
 }
 
-function insertOperator(operator) {
+function insertOperator(newOperator) {
+    if (result !== null) {  // after evaluated
+        operand1 = result;
+        operand2 = null;
+        result = null;
+    }
+    if (operand1 === null) return;
 
+    operator = newOperator;
+    updateDisplay();
 }
 
 function evaluate(operand1, operand2, operator) {
-    
+
 }
 
 function addDot() {
 
+}
+
+function updateDisplay() {
+    if (result !== null) {
+        display.textContent = result;
+    }
+    else {
+        display.textContent = 
+            ((operand1 !== null) ? operand1 : '') + ' ' +
+            ((operator !== null) ? operator : '') + ' ' +
+            ((operand2 !== null) ? operand2 : '');
+    }
 }
