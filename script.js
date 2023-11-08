@@ -150,15 +150,18 @@ function addDot() {
 
 function updateDisplay() {
     let value;
-    if (result !== null) {
-        value = result;
-    } else if (isError){
+    let displayedOperator = operator ? operator.replace('*','×') : null;
+    
+    if (isError){
         value = 'ERROR!'
+    }
+    else if (result !== null) {
+        value = result;
     }
     else {
         value = 
             ((operand1 !== null) ? operand1 : '') + ' ' +
-            ((operator !== null) ? operator : '') + ' ' +
+            ((displayedOperator !== null) ? displayedOperator : '') + ' ' +
             ((operand2 !== null) ? operand2 : '');
     }
     display.textContent = value;
