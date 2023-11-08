@@ -73,6 +73,10 @@ function insertDigit(digit) {
 }
 
 function insertOperator(newOperator) {
+    if (operand2 !== null) {    // chaining operations
+        operate(operand1, operand2, operator);
+        operand1 = result;
+    }
     if (result !== null) {  // after evaluated
         operand1 = result;
         operand2 = null;
@@ -122,10 +126,7 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    if (b === 0) {
-        setError()
-        return "ERROR"
-    }
+    if (b === 0) setError();
     return a / b;
 }
 
@@ -148,15 +149,20 @@ function addDot() {
 }
 
 function updateDisplay() {
+    let value;
     if (result !== null) {
-        display.textContent = result;
+        value = result;
+    } else if (isError){
+        value = 'ERROR!'
     }
     else {
-        display.textContent = 
+        value = 
             ((operand1 !== null) ? operand1 : '') + ' ' +
             ((operator !== null) ? operator : '') + ' ' +
             ((operand2 !== null) ? operand2 : '');
     }
+    display.textContent = value;
+    return
 }
 
 function setError() {
@@ -175,3 +181,5 @@ function resetError() {
 function roundDecimals(number, places) {
     return Math.round(number * 10**places)/10**places;
 };
+
+//TODO - operation chaining!!!
