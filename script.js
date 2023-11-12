@@ -171,12 +171,14 @@ function updateDisplay() {
 function setError() {
     if (!display.classList.contains('error')){
         display.classList.add('error');
+        display.classList.remove('no-error');
     }
     isError = true;
 }
 function resetError() {
     if (display.classList.contains('error')){
         display.classList.remove('error');
+        display.classList.add('no-error');
     }
     isError = false;
 }
